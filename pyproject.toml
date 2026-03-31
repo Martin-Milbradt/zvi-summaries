@@ -1,0 +1,40 @@
+[project]
+name = "zvi-summaries"
+version = "0.1.0"
+description = "RSS feed of LLM summaries of thezvi.substack.com"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "beautifulsoup4>=4.12",
+    "feedparser>=6.0",
+    "lxml>=5.0",
+    "openai>=1.0",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.22",
+    "pytest>=8.0",
+    "ruff>=0.9",
+]
+
+[project.scripts]
+zvi-summaries = "zvi_summaries.main:main"
+
+[tool.ruff.lint]
+extend-select = ["I", "UP"]
+
+[tool.basedpyright]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.13"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
