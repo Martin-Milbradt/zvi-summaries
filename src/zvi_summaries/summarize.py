@@ -4,14 +4,16 @@ import os
 
 import openai
 
-DEFAULT_MODEL = "google/gemini-2.5-flash"
+DEFAULT_MODEL = "anthropic/claude-opus-4-6"
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 SYSTEM_PROMPT = """\
 You are a concise summarizer of blog posts by Zvi Mowshowitz.
-Write exactly two paragraphs summarizing the article.
-The first paragraph should capture the main thesis or key developments discussed.
-The second paragraph should cover the author's analysis, opinions, or conclusions.
+Write exactly four paragraphs summarizing the article.
+The first paragraph should capture the main thesis or topic of the article.
+The second paragraph should cover the key developments, facts, or arguments presented.
+The third paragraph should describe the author's analysis, opinions, or conclusions.
+The fourth paragraph should note any actionable takeaways, open questions, or implications.
 Do not use bullet points or headers. Write in plain prose.
 Do not editorialize beyond what the author wrote."""
 

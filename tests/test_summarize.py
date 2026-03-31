@@ -38,7 +38,7 @@ def test_summarize_article_prompt_structure() -> None:
     messages = mock_chat.call_args[0][0]
     assert len(messages) == 2
     assert messages[0].role == "system"
-    assert "two paragraphs" in messages[0].content
+    assert "four paragraphs" in messages[0].content
     assert messages[1].role == "user"
     assert "Test Title" in messages[1].content
     assert "Article body text here." in messages[1].content
