@@ -8,10 +8,9 @@ from typing import cast
 import feedparser
 from bs4 import BeautifulSoup
 
-FEED_URL = "https://thezvi.substack.com/feed"
+FEED_URL = "https://thezvi.wordpress.com/feed/"
 USER_AGENT = (
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+    "Mozilla/5.0 (zvi-summaries; +https://github.com/Martin-Milbradt/zvi-summaries)"
 )
 
 
