@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from typing import TypedDict
+from typing import NotRequired, TypedDict
 
 
 class CachedSummary(TypedDict):
@@ -10,6 +10,7 @@ class CachedSummary(TypedDict):
     pub_date: str
     summary: str
     summarized_at: str
+    model: NotRequired[str]
 
 
 def load_cache(path: Path) -> dict[str, CachedSummary]:

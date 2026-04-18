@@ -25,6 +25,7 @@ jobs:
       - name: Generate feed
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          SUMMARY_MODEL: ${{ vars.SUMMARY_MODEL }}
         run: uv run zvi-summaries
 
       - name: Commit and push if changed

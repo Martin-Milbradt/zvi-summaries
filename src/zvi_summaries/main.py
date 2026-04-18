@@ -6,7 +6,7 @@ from typing import cast
 from zvi_summaries.cache import CachedSummary, load_cache, save_cache
 from zvi_summaries.fetch import fetch_articles, strip_html
 from zvi_summaries.generate import build_feed
-from zvi_summaries.summarize import summarize_article
+from zvi_summaries.summarize import configured_model, summarize_article
 
 DEFAULT_CACHE_PATH = Path("data/cache.json")
 DEFAULT_OUTPUT_PATH = Path("docs/feed.xml")
@@ -19,6 +19,7 @@ def run(
     """Returns the number of newly summarized articles."""
     cache = load_cache(cache_path)
     articles = fetch_articles()
+    model = configured_model()
 
     new_count = 0
     for article in articles:
@@ -27,7 +28,7 @@ def run(
 
         print(f"Summarizing: {article.title}")  # noqa: T201
         text = strip_html(article.content_html)
-        summary = summarize_article(article.title, text)
+        summary = summarize_article(article.title, text, model=model)
 
         cache[article.guid] = CachedSummary(
             title=article.title,
@@ -36,6 +37,7 @@ def run(
             pub_date=article.pub_date.isoformat(),
             summary=summary,
             summarized_at=datetime.datetime.now(datetime.UTC).isoformat(),
+            model=model,
         )
         new_count += 1
 
