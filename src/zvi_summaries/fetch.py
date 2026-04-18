@@ -9,6 +9,13 @@ import feedparser
 from bs4 import BeautifulSoup
 
 FEED_URL = "https://thezvi.substack.com/feed"
+USER_AGENT = (
+    "Mozilla/5.0 (zvi-summaries; +https://github.com/Martin-Milbradt/zvi-summaries)"
+)
+
+
+class FeedFetchError(Exception):
+    pass
 
 
 @dataclasses.dataclass(frozen=True)
@@ -22,7 +29,23 @@ class Article:
 
 
 def fetch_articles(url: str = FEED_URL) -> list[Article]:
-    feed = feedparser.parse(url)
+    feed = feedparser.parse(url, agent=USER_AGENT)
+
+    status = cast(int | None, getattr(feed, "status", None))
+    bozo = bool(getattr(feed, "bozo", False))
+    bozo_exception = getattr(feed, "bozo_exception", None)
+    entries = cast(list[object], feed.entries)
+    print(f"Feed status={status} bozo={bozo} entries={len(entries)}")  # noqa: T201
+
+    if status is not None and status >= 400:
+        raise FeedFetchError(f"Feed request returned HTTP {status} for {url}.")
+    if bozo and not entries:
+        raise FeedFetchError(f"Feed parse failed for {url}: {bozo_exception!r}")
+    if not entries:
+        raise FeedFetchError(
+            f"Feed returned zero entries for {url} (likely blocked or empty)."
+        )
+
     articles: list[Article] = []
     for entry in feed.entries:
         content_html = ""
