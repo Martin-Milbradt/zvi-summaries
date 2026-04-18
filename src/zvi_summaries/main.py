@@ -20,10 +20,6 @@ def run(
     cache = load_cache(cache_path)
     articles = fetch_articles()
 
-    if not articles:
-        print("No articles found in feed.")  # noqa: T201
-        return 0
-
     new_count = 0
     for article in articles:
         if article.guid in cache:
