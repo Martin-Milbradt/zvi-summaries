@@ -7,6 +7,12 @@ import openai
 DEFAULT_MODEL = "anthropic/claude-opus-4-6"
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
+
+def configured_model() -> str:
+    """Model id to use, overridable via the SUMMARY_MODEL env var."""
+    return os.environ.get("SUMMARY_MODEL", "").strip() or DEFAULT_MODEL
+
+
 SYSTEM_PROMPT = """\
 You are a concise summarizer of blog posts by Zvi Mowshowitz.
 Write exactly four paragraphs summarizing the article.
@@ -47,8 +53,9 @@ def serialize_messages(
 
 def post_chat(
     messages: collections.abc.Sequence[ChatMessage],
-    model: str = DEFAULT_MODEL,
+    model: str | None = None,
 ) -> str:
+    model = model or configured_model()
     api_key = environment_api_key()
     client = openai.OpenAI(
         base_url=OPENROUTER_BASE_URL,
@@ -65,7 +72,7 @@ def post_chat(
     return content
 
 
-def summarize_article(title: str, text: str) -> str:
+def summarize_article(title: str, text: str, model: str | None = None) -> str:
     messages = [
         ChatMessage(role="system", content=SYSTEM_PROMPT),
         ChatMessage(
@@ -73,4 +80,4 @@ def summarize_article(title: str, text: str) -> str:
             content=f"Summarize this article.\n\nTitle: {title}\n\nContent:\n{text}",
         ),
     ]
-    return post_chat(messages)
+    return post_chat(messages, model=model or configured_model())
