@@ -36,6 +36,12 @@ def format_rfc822(dt: datetime.datetime) -> str:
     return format_datetime(dt)
 
 
+def paragraphize(text: str) -> str:
+    """Wrap each \\n\\n-separated paragraph in <p> tags so readers render breaks."""
+    paragraphs = [p.strip() for p in text.split("\n\n") if p.strip()]
+    return "".join(f"<p>{escape(p)}</p>" for p in paragraphs)
+
+
 def format_item(guid: str, summary: CachedSummary) -> str:
     pub_dt = datetime.datetime.fromisoformat(summary["pub_date"])
     creator = summary.get("model") or summary["author"]
@@ -45,7 +51,7 @@ def format_item(guid: str, summary: CachedSummary) -> str:
         guid=escape(guid),
         pub_date=format_rfc822(pub_dt),
         author=escape(creator),
-        description=escape(summary["summary"]),
+        description=escape(paragraphize(summary["summary"])),
     )
 
 
