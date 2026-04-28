@@ -6,7 +6,7 @@
     <atom:link href="https://martin-milbradt.github.io/zvi-summaries/feed.xml" rel="self" type="application/rss+xml"/>
     <description>LLM-generated 2-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Apr 2026 08:23:42 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 28 Apr 2026 14:02:45 +0000</lastBuildDate>
     <item>
       <title>GPT 5.5: The System Card</title>
       <link>https://thezvi.wordpress.com/2026/04/27/gpt-5-5-the-system-card/</link>
