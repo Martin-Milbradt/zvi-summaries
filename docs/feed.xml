@@ -6,7 +6,15 @@
     <atom:link href="https://martin-milbradt.github.io/zvi-summaries/feed.xml" rel="self" type="application/rss+xml"/>
     <description>LLM-generated 2-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 29 Apr 2026 13:53:12 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 29 Apr 2026 19:23:25 +0000</lastBuildDate>
+    <item>
+      <title>The Most Important Charts In The World</title>
+      <link>https://thezvi.wordpress.com/2026/04/29/the-most-important-charts-in-the-world/</link>
+      <guid isPermaLink="false">http://thezvi.wordpress.com/?p=25249</guid>
+      <pubDate>Wed, 29 Apr 2026 14:05:20 +0000</pubDate>
+      <dc:creator>anthropic/claude-opus-4-7</dc:creator>
+      <description>&lt;p&gt;Zvi Mowshowitz offers a lighthearted roundup of "the most important charts in the world," crowdsourced from Twitter responses to his question. He frames the post as a break from heavier content while still engaging with serious themes about humanity's trajectory, starting from the METR graph that is often given the "most important chart" label in AI discussions.&lt;/p&gt;&lt;p&gt;The piece assembles charts across several categories: the METR graph showing AI models' rapidly expanding time horizons for completing software tasks autonomously, which trends suggest could lead to recursive self-improvement; economic charts showing dramatic reductions in child mortality, poverty, and nuclear weapon detonations; exponential growth charts covering energy use, low-carbon energy, and global GDP on log scales; charts about cholera's spread and historical discoveries; fertility decline charts; the rise of meat consumption (mostly chickens); and various cultural references including the virtues from Ultima, Skittles color distributions, and Japan's Phillips Curve shaped like Japan itself.&lt;/p&gt;&lt;p&gt;Zvi's analysis interweaves optimism about dramatic human progress—reductions in child death, poverty, and nuclear risks—with concern about the AI trajectory implied by the METR graph, which could transform the world into something unrecognizable. He notes that exponential growth curves in GDP and energy suggest we live in an unusually prosperous moment likely to continue, while cautioning that fertility decline charts become critical if those exponentials fail to sustain us. His tone is playful but carries an undercurrent of seriousness about AI's implications.&lt;/p&gt;&lt;p&gt;The actionable takeaways are mostly implicit: appreciate how much better things have gotten, don't fixate on relative wealth comparisons, take the AI capability trajectory seriously, and remember basic wisdom like not starting a land war in Asia. Open questions loom around whether AI will drive continued exponential progress or introduce unprecedented risks, and whether fertility decline will undermine the growth trends that have made modern life dramatically better than historical norms.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>GPT-5.5: Capabilities and Reactions</title>
       <link>https://thezvi.wordpress.com/2026/04/28/gpt-5-5-capabilities-and-reactions/</link>
