@@ -6,7 +6,7 @@
     <atom:link href="https://martin-milbradt.github.io/zvi-summaries/feed.xml" rel="self" type="application/rss+xml"/>
     <description>LLM-generated 2-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 17 Jun 2026 03:58:23 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jun 2026 10:52:13 +0000</lastBuildDate>
     <item>
       <title>Fable and Mythos: Model Welfare</title>
       <link>https://thezvi.wordpress.com/2026/06/16/fable-and-mythos-model-welfare/</link>
