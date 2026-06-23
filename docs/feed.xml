@@ -6,7 +6,7 @@
     <atom:link href="https://martin-milbradt.github.io/zvi-summaries/feed.xml" rel="self" type="application/rss+xml"/>
     <description>LLM-generated 2-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 23 Jun 2026 03:26:03 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Jun 2026 09:35:50 +0000</lastBuildDate>
     <item>
       <title>GLM-5.2 Is The New Best Open Model</title>
       <link>https://thezvi.wordpress.com/2026/06/22/glm-5-2-is-the-new-best-open-model/</link>
