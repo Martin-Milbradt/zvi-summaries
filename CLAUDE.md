@@ -1,6 +1,6 @@
 # zvi-summaries
 
-RSS feed of LLM-generated 2-paragraph summaries of thezvi.substack.com articles.
+RSS feed of LLM-generated four-paragraph summaries of thezvi.substack.com articles.
 
 ## Commands
 
@@ -31,3 +31,5 @@ Pipeline: fetch Substack RSS -> filter uncached articles -> summarize via OpenRo
 ## Environment
 
 - `OPENROUTER_API_KEY` -- required for LLM summarization
+- `SUMMARY_MODEL` -- optional model override (CI repo variable), then `LLM_STRONG`, then the built-in default
+- `KNOWLEDGE_CUTOFF` -- optional cutoff stated in the prompt (CI repo variable), defaults to the built-in value for the default model

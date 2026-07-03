@@ -13,7 +13,7 @@ FEED_TEMPLATE = """\
     <title>Don't Worry About the Vase -- Summaries</title>
     <link>https://thezvi.substack.com</link>
     <atom:link href="{self_url}" rel="self" type="application/rss+xml"/>
-    <description>LLM-generated 2-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
+    <description>LLM-generated four-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
     <lastBuildDate>{last_build_date}</lastBuildDate>
 {items}

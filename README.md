@@ -1,6 +1,6 @@
 # zvi-summaries
 
-RSS feed of LLM-generated 2-paragraph summaries of [thezvi.substack.com](https://thezvi.substack.com) articles.
+RSS feed of LLM-generated four-paragraph summaries of [thezvi.substack.com](https://thezvi.substack.com) articles.
 
 ## Feed
 
