@@ -24,12 +24,16 @@ jobs:
 
       - name: Generate feed
         env:
+          FALLBACK_MODEL: ${{ vars.FALLBACK_MODEL }}
           KNOWLEDGE_CUTOFF: ${{ vars.KNOWLEDGE_CUTOFF }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           SUMMARY_MODEL: ${{ vars.SUMMARY_MODEL }}
         run: uv run zvi-summaries
 
+      # always(): a refused article fails the previous step on purpose, but the
+      # summaries it did produce are already on disk and must still land.
       - name: Commit and push if changed
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

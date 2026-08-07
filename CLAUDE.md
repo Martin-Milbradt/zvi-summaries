@@ -15,9 +15,11 @@ uv run basedpyright src/                         # Type check
 
 ## Architecture
 
-Pipeline: fetch Substack RSS -> filter uncached articles -> summarize via OpenRouter -> write cache + feed XML.
+Pipeline: fetch the RSS feed -> filter uncached articles -> summarize via OpenRouter -> write cache + feed XML.
 
-- `src/zvi_summaries/fetch.py` -- download and parse the Substack RSS feed, strip HTML
+A model may refuse an article under its content policy. The run retries once on `FALLBACK_MODEL`, keeps going past articles both models refuse, and raises `RefusedArticlesError` only after the cache and feed are written, so a failure still commits the summaries that succeeded and still sends a workflow-failure notification.
+
+- `src/zvi_summaries/fetch.py` -- download and parse the RSS feed, strip HTML
 - `src/zvi_summaries/summarize.py` -- OpenRouter client, summarization prompt
 - `src/zvi_summaries/cache.py` -- JSON cache of article summaries
 - `src/zvi_summaries/generate.py` -- build RSS 2.0 XML from cache
@@ -31,5 +33,8 @@ Pipeline: fetch Substack RSS -> filter uncached articles -> summarize via OpenRo
 ## Environment
 
 - `OPENROUTER_API_KEY` -- required for LLM summarization
-- `SUMMARY_MODEL` -- optional model override (CI repo variable), then `LLM_STRONG`, then the built-in default
-- `KNOWLEDGE_CUTOFF` -- optional cutoff stated in the prompt (CI repo variable), defaults to the built-in value for the default model
+- `SUMMARY_MODEL` -- model id; the CI repo variable wins, then the global `LLM_MAX` tier. With neither set, `configured_model()` raises `MissingModelError` rather than picking one.
+- `FALLBACK_MODEL` -- model retried when `SUMMARY_MODEL` refuses an article; the CI repo variable wins, then the global `LLM_STRONG` tier. Unset means no retry. Refusals are per-model, not per-provider, so a sibling model from the same provider is a valid choice.
+- `KNOWLEDGE_CUTOFF` -- optional cutoff stated in the prompt (CI repo variable), defaults to `DEFAULT_KNOWLEDGE_CUTOFF`. It describes the configured model, so revisit it when `SUMMARY_MODEL` changes.
+
+`--pages N` scans older feed pages as well as the newest. The feed holds only 10 entries, so an outage longer than 10 posts drops articles out of reach; `--pages 2` recovers them.

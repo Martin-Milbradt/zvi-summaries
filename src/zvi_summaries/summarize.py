@@ -6,16 +6,37 @@ import os
 import openai
 
 DEFAULT_KNOWLEDGE_CUTOFF = "January 2026"
-DEFAULT_MODEL = "anthropic/claude-opus-4.8"
+MAX_OUTPUT_TOKENS = 5000
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 
+class MissingModelError(Exception):
+    pass
+
+
 def configured_model() -> str:
-    """Model id to use: SUMMARY_MODEL (CI) wins, then the global LLM_STRONG tier, then the default."""
-    return (
+    """Model id to use: SUMMARY_MODEL (CI repo variable) wins, then the global LLM_MAX tier."""
+    model = (
         os.environ.get("SUMMARY_MODEL", "").strip()
+        or os.environ.get("LLM_MAX", "").strip()
+    )
+    if model:
+        return model
+    raise MissingModelError(
+        "No summarization model configured. Set SUMMARY_MODEL or the global LLM_MAX tier."
+    )
+
+
+def configured_fallback_model() -> str | None:
+    """Model retried after a refusal: FALLBACK_MODEL (CI repo variable) wins, then LLM_STRONG.
+
+    Refusals are per-model rather than per-provider, so any model that does not
+    share SUMMARY_MODEL's content restrictions works here.
+    """
+    return (
+        os.environ.get("FALLBACK_MODEL", "").strip()
         or os.environ.get("LLM_STRONG", "").strip()
-        or DEFAULT_MODEL
+        or None
     )
 
 
@@ -51,6 +72,10 @@ class OpenRouterRequestError(Exception):
     pass
 
 
+class ArticleRefusedError(Exception):
+    """The model declined to summarize the article, e.g. under a usage policy."""
+
+
 def environment_api_key() -> str:
     token = os.environ.get("OPENROUTER_API_KEY", "").strip()
     if token:
@@ -75,14 +100,49 @@ def post_chat(
         api_key=api_key,
         timeout=120.0,
     )
+    # OpenRouter reserves credit for the full max_tokens up front, so leaving this
+    # unset holds the model's entire output ceiling against the key's limit.
     response = client.chat.completions.create(
         model=model,
         messages=serialize_messages(messages),  # pyright: ignore[reportArgumentType]
+        max_tokens=MAX_OUTPUT_TOKENS,
     )
-    content = response.choices[0].message.content
+    choice = response.choices[0]
+    refusal = choice.message.refusal
+    if refusal or choice.finish_reason == "content_filter":
+        raise ArticleRefusedError(
+            refusal or "Blocked by the provider's content filter."
+        )
+    if choice.finish_reason == "length":
+        raise OpenRouterRequestError(
+            f"Summary hit the {MAX_OUTPUT_TOKENS}-token output cap and was truncated."
+        )
+
+    content = choice.message.content
     if not content:
         raise OpenRouterRequestError("OpenRouter response contained empty content.")
     return content
+
+
+def summarize_with_fallback(
+    title: str,
+    text: str,
+    model: str,
+    fallback: str | None,
+) -> tuple[str, str]:
+    """Summarize, retrying a refusal once on the fallback model.
+
+    Returns the summary and the model that produced it. Raises ArticleRefusedError
+    if there is no usable fallback or if the fallback refuses too.
+    """
+    try:
+        return summarize_article(title, text, model=model), model
+    except ArticleRefusedError:
+        if not fallback or fallback == model:
+            raise
+        print(f"  refused by {model}, retrying with {fallback}")  # noqa: T201
+
+    return summarize_article(title, text, model=fallback), fallback
 
 
 def summarize_article(title: str, text: str, model: str | None = None) -> str:
