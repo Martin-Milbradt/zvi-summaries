@@ -6,7 +6,7 @@
     <atom:link href="https://martin-milbradt.github.io/zvi-summaries/feed.xml" rel="self" type="application/rss+xml"/>
     <description>LLM-generated four-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 10 Aug 2026 01:39:01 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2026 07:28:18 +0000</lastBuildDate>
     <item>
       <title>What Happened: OpenAI and HuggingFace</title>
       <link>https://thezvi.wordpress.com/2026/08/08/what-happened-openai-and-huggingface/</link>
