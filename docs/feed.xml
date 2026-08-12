@@ -6,7 +6,7 @@
     <atom:link href="https://martin-milbradt.github.io/zvi-summaries/feed.xml" rel="self" type="application/rss+xml"/>
     <description>LLM-generated four-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 12 Aug 2026 01:46:59 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2026 07:20:50 +0000</lastBuildDate>
     <item>
       <title>Various Reflections About What Happened With OpenAI’s Internal Models</title>
       <link>https://thezvi.wordpress.com/2026/08/11/various-reflections-about-what-happened-with-openais-internal-models/</link>
