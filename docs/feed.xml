@@ -6,7 +6,7 @@
     <atom:link href="https://martin-milbradt.github.io/zvi-summaries/feed.xml" rel="self" type="application/rss+xml"/>
     <description>LLM-generated four-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 20 Aug 2026 01:06:33 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2026 06:41:09 +0000</lastBuildDate>
     <item>
       <title>OpenAI Takes Initial Steps To Address Its Alignment Problems</title>
       <link>https://thezvi.wordpress.com/2026/08/19/openai-takes-initial-steps-to-address-its-alignment-problems/</link>
