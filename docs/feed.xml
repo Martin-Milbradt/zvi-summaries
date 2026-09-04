@@ -6,7 +6,7 @@
     <atom:link href="https://martin-milbradt.github.io/zvi-summaries/feed.xml" rel="self" type="application/rss+xml"/>
     <description>LLM-generated four-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 04 Sep 2026 10:36:21 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Sep 2026 15:45:59 +0000</lastBuildDate>
     <item>
       <title>AI #184: Post Post Mortem</title>
       <link>https://thezvi.wordpress.com/2026/09/03/ai-184-post-post-mortem/</link>
