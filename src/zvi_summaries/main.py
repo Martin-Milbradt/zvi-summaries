@@ -50,8 +50,8 @@ def run(
         if article.guid in cache:
             continue
 
-        print(f"Summarizing: {article.title}")  # noqa: T201
         text = strip_html(article.content_html)
+        print(f"Summarizing: {article.title} ({len(text):,} chars)")  # noqa: T201
         # Refusals must not abort the run: the remaining articles are still
         # summarizable, and the feed only recovers if they get written.
         try:

@@ -1,6 +1,6 @@
 # zvi-summaries
 
-RSS feed of LLM-generated four-paragraph summaries of [thezvi.substack.com](https://thezvi.substack.com) articles.
+RSS feed of LLM-generated four-paragraph summaries of [Zvi Mowshowitz's blog](https://thezvi.substack.com).
 
 ## Feed
 
@@ -19,4 +19,4 @@ uv run basedpyright src/          # Type check
 
 ## How it works
 
-Fetches the Substack RSS feed, summarizes uncached articles via OpenRouter, and writes the result to `docs/feed.xml` (served by GitHub Pages). Summaries are cached in `data/cache.json`.
+Fetches the blog's RSS feed, summarizes uncached articles via OpenRouter, and writes the result to `docs/feed.xml` (served by GitHub Pages). Summaries are cached in `data/cache.json`.

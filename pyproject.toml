@@ -1,7 +1,7 @@
 [project]
 name = "zvi-summaries"
 version = "0.1.0"
-description = "RSS feed of LLM summaries of thezvi.substack.com"
+description = "RSS feed of LLM summaries of Zvi Mowshowitz's blog"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

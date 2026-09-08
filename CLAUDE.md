@@ -1,6 +1,6 @@
 # zvi-summaries
 
-RSS feed of LLM-generated four-paragraph summaries of thezvi.substack.com articles.
+RSS feed of LLM-generated four-paragraph summaries of Zvi Mowshowitz's blog. Posts come from the WordPress mirror feed (`FEED_URL` in `fetch.py`), which serves full post bodies without comments; the Substack feed returns 403 to GitHub Actions runners.
 
 ## Commands
 
@@ -24,6 +24,8 @@ A model may refuse an article under its content policy. The run retries once on 
 - `src/zvi_summaries/cache.py` -- JSON cache of article summaries
 - `src/zvi_summaries/generate.py` -- build RSS 2.0 XML from cache
 - `src/zvi_summaries/main.py` -- CLI entry point
+
+Articles go to the model whole. `MAX_TEXT_LENGTH` in `fetch.py` only guards against a runaway payload; the longest posts reach about a quarter of it. The run log prints each article's character count. The text is light markdown: `#` headings, `1.` and `-` list markers, `>` on block quotes (the author's marker for quoted material, so the model can tell the author's words from quoted text), and an `[image]` placeholder where a figure was, so a sentence like "this chart shows" still points at something.
 
 ## Output
 
