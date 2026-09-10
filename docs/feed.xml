@@ -6,7 +6,7 @@
     <atom:link href="https://martin-milbradt.github.io/zvi-summaries/feed.xml" rel="self" type="application/rss+xml"/>
     <description>LLM-generated four-paragraph summaries of Zvi Mowshowitz's blog posts.</description>
     <language>en</language>
-    <lastBuildDate>Thu, 10 Sep 2026 03:07:51 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2026 10:37:50 +0000</lastBuildDate>
     <item>
       <title>GPT-6 Astra: The System Card, Alignment and What Comes Next</title>
       <link>https://thezvi.wordpress.com/2026/09/09/gpt-6-astra-the-system-card-alignment-and-what-comes-next/</link>
